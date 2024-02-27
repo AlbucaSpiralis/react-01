@@ -1,0 +1,37 @@
+.topMenu {
+  position: relative;
+  z-index: 10;
+}
+
+.sideNav {
+    width: fixed;
+    height: 60px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #f4f4f4;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .sideNav h3 {
+    margin-top: 60px;
+    background-color: cadetblue;
+  }
+  
+  .sideNav p {
+    margin-bottom: 10px;
+  }
+
+  .sideNav a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 10px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sideNav a:hover {
+    background-color: #ddd;
+  }
