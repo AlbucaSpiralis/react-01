@@ -4,6 +4,7 @@ import TopMenu from "./components/TopMenu";
 import TableDump from "./pages/TableDump";
 import WebserviceXML from "./pages/WebserviceXml";
 import Home from "./pages/Home";
+import JenkinsStatus from "./components/JenkinStatus";
 
 const App: React.FC = () => {
   const menuItems = [
@@ -21,6 +22,9 @@ const App: React.FC = () => {
           <Route path="/tabledump/*" element={<TableDump />}></Route>
           <Route path="/webservicexml" element={<WebserviceXML />}></Route>
         </Routes>
+        <aside>
+          <JenkinsStatus />
+        </aside>
       </div>
     </Router>
   );

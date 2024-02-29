@@ -38,28 +38,77 @@ const InputForm: React.FC<InputFormProps> = ({ dumpType, fields, types }) => {
 
     const formData = new URLSearchParams(formState).toString();
 
+    // try {
+    //   const response = await axios({
+    //     method: "post",
+    //     url: url,
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: "Basic " + btoa(username + ":" + token),
+    //     },
+    //     data: {
+    //       parameter: formData,
+    //     },
+    //   });
+
+    //   console.info(formData);
+
+    //   if (response.status === 201) {
+    //     alert("Job triggered successfully");
+    //   } else {
+    //     alert("Failed to trigger job");
+    //   }
+    // } catch (error) {
+    //   console.error("Error:", error);
+    // }
+
+    // try {
+    //   axios.get(url);
+    // } catch (error) {
+    //   console.error("Error triggering Jenkins job:", error);
+    // }
+
+    //   try {
+    //     const response = await axios.post(
+    //       `${jenkinsUrl}/job/${jobName}/buildWithParameters`,
+    //       formData,
+    //       {
+    //         auth: {
+    //           username: username,
+    //           password: token,
+    //         },
+    //         // params: {
+    //         //   string: formData, // Pass your file location here
+    //         // },
+    //       }
+    //     );
+
+    //     console.log("Job triggered successfully:", response.data);
+    //   } catch (error) {
+    //     console.error("Error triggering Jenkins job:", error);
+    //   }
+    // };
+
+    console.info(formData);
+
+    const jenkinsUrl2 = `${jenkinsUrl}/job/${jobName}/buildWithParameters`;
+    const params = `Benefit='test'`;
     try {
-      const response = await axios({
-        method: "post",
-        url: url,
+      const response = await fetch(`${jenkinsUrl2}?${formData}`, {
+        method: "POST", // Use POST for security reasons
         headers: {
-          "Content-Type": "application/json",
           Authorization: "Basic " + btoa(username + ":" + token),
-        },
-        data: {
-          parameter: formData,
+          "Content-Type": "application/x-www-form-urlencoded",
         },
       });
 
-      console.info(formData);
-
-      if (response.status === 201) {
-        alert("Job triggered successfully");
+      if (response.ok) {
+        console.log("Build triggered successfully!");
       } else {
-        alert("Failed to trigger job");
+        console.error("Error triggering build:", response.statusText);
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error("An error occurred:", error);
     }
   };
 
